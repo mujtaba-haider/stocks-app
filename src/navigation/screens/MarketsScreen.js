@@ -69,33 +69,41 @@ export default function MarketsScreen({ navigation }) {
                 </View>
             </View>
 
-            <SafeAreaView>
-                <FlatList
-                    data={filteredData}
-                    renderItem={({ item }) =>
-                        <TouchableHighlight
-                            activeOpacity={0.6}
-                            underlayColor="#DDDDDD"
-                            onPress={() => navigation.navigate('Portfolio', { ...item })}>
-                            <View style={{ width: '100%', paddingVertical: 20, paddingHorizontal: 30, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end', borderBottomWidth: 0.5, borderBottomColor: 'lightgrey' }}>
-                                <View>
-                                    <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{item.symbol}</Text>
-                                    <Text style={{ color: 'grey', fontSize: 11 }}>{item.name}</Text>
-                                </View>
-                                <View>
-                                    <Text>{item.graph}</Text>
+            {activeMarket === 1 ?
+                <SafeAreaView>
+                    <FlatList
+                        data={filteredData}
+                        renderItem={({ item }) =>
+                            <TouchableHighlight
+                                activeOpacity={0.6}
+                                underlayColor="#DDDDDD"
+                                onPress={() => navigation.navigate('Portfolio', { ...item })}>
+                                <View style={{ width: '100%', paddingVertical: 20, paddingHorizontal: 30, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end', borderBottomWidth: 0.5, borderBottomColor: 'lightgrey' }}>
+                                    <View>
+                                        <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{item.symbol}</Text>
+                                        <Text style={{ color: 'grey', fontSize: 11 }}>{item.name}</Text>
+                                    </View>
+                                    <View>
+                                        <Text>{item.graph}</Text>
 
+                                    </View>
+                                    <View>
+                                        <Text style={{ fontSize: 17, fontWeight: 'bold' }}>${item.price}</Text>
+                                        <Text style={{ textAlign: 'right', color: item.gain > 0 ? 'green' : 'red' }}>{item.gain}%</Text>
+                                    </View>
                                 </View>
-                                <View>
-                                    <Text style={{ fontSize: 17, fontWeight: 'bold' }}>${item.price}</Text>
-                                    <Text style={{ textAlign: 'right', color: item.gain > 0 ? 'green' : 'red' }}>{item.gain}%</Text>
-                                </View>
-                            </View>
-                        </TouchableHighlight>
-                    }
-                    keyExtractor={item => item.id}
-                />
-            </SafeAreaView>
+                            </TouchableHighlight>
+                        }
+                        keyExtractor={item => item.id}
+                    />
+                </SafeAreaView>
+                :
+                <View style={{ height: 400, display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={{ fontSize: 18, fontWeight: '700' }}>
+                        {categories[activeMarket]}
+                    </Text>
+                </View>
+            }
         </View>
     );
 }
