@@ -42,14 +42,13 @@ export default function MarketsScreen({ navigation }) {
                     <Text style={{ fontSize: 36, fontWeight: 'bold', color: '#fff', paddingTop: 20, paddingBottom: 15 }}>
                         Markets
                     </Text>
-                    <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#5C7CF7', height: 45, borderRadius: 5, paddingHorizontal: 10 }}>
+                    <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', backgroundColor: '#5C7CF7', height: 45, borderRadius: 5, paddingHorizontal: 10 }}>
                         <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                             <Ionicons name="search-outline" size={20} color='#fff' />
                             <TextInput
-                                style={{ color: '#fff', marginLeft: 10 }}
+                                style={{ color: '#fff', marginLeft: 10, width: 230 }}
                                 placeholder="Search markets"
                                 placeholderTextColor='#fff'
-
                                 onChangeText={handleSearch}
                                 value={searchText}
                             />
